@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/tigre?createDatabaseIfNotExist=true
+    username: root                      #  MySQL username
+    password: 9027707502            #  MySQL password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true  
+    database: mysql                   # Show SQL queries in console
+    hibernate:
+      ddl-auto: create-drop                 
+    
