@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 
 import com.priyansh.spring.Repository.Author_repo;
 import com.priyansh.spring.Repository.Video_Repo;
-import com.priyansh.spring.model.Author;
 import com.priyansh.spring.model.Video;
 
 @SpringBootApplication
