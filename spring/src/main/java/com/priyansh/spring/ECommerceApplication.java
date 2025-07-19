@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.priyansh.spring.Repository.Author_repo;
+import com.priyansh.spring.Repository.Video_Repo;
 import com.priyansh.spring.model.Author;
+import com.priyansh.spring.model.Video;
 
 @SpringBootApplication
 public class ECommerceApplication {
@@ -15,16 +17,22 @@ public class ECommerceApplication {
 		SpringApplication.run(ECommerceApplication.class, args);
 	}
 
-	//@Bean
-	public CommandLineRunner commandLineRunner(Author_repo author_repo){
+	@Bean
+	public CommandLineRunner commandLineRunner(Author_repo author_repo, Video_Repo video_Repo){
 		return args -> {
-			var author = Author.builder()
+		/* 	var author = Author.builder()
 				.Firstname("animal")
 				.lastname("animal")
 				.email("animal@gmail.com")
 				.age(20)
 				.build();
-			author_repo.save(author);
+			author_repo.save(author);/* */ 
+
+			var video = Video.builder()
+				.name("abc")
+				.length(12)
+				.build();
+			video_Repo.save(video);
 		};
 	}
 
