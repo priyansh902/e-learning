@@ -27,11 +27,11 @@ public class ECommerceApplication {
 				.build();
 			author_repo.save(author);/* */ 
 
-			var video = Video.builder()
-				.name("abc")
-				.length(12)
-				.build();
-			video_Repo.save(video);
+			// var video = Video.builder()
+			// 	.name("abc")
+			// 	.length(12)
+			// 	.build();
+			// video_Repo.save(video);
 		};
 	}
 
