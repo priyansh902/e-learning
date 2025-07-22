@@ -32,12 +32,11 @@ public class Author extends BaseEntity {
     // allocationSize = 1).
 
    
-    private String Firstname;
+    private String firstname;
 
     private String lastname;
 
-    @Column(unique = true,
-    nullable = false)
+    @Column(unique = true)
     private String email;
 
     private int age;
