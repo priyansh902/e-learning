@@ -1,6 +1,6 @@
 package com.priyansh.spring.Dto;
 
-
+import jakarta.persistence.Column;
 
 public record Author_dto(
 
@@ -8,7 +8,7 @@ public record Author_dto(
 
      String lastname,
 
-        
+        @Column(unique = true)
      String email,
 
      int age

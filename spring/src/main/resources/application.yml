@@ -9,5 +9,5 @@ spring:
     show-sql: true  
     database: mysql                   # Show SQL queries in console
     hibernate:
-      ddl-auto: create-drop                 
+      ddl-auto: update                 
     
