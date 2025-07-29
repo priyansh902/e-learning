@@ -16,6 +16,7 @@ import com.priyansh.spring.RespDto.Video_Resp_dto;
 import com.priyansh.spring.Service.Video_service;
 import com.priyansh.spring.model.Video;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -27,6 +28,7 @@ public class Video_cont {
         this.video_service = video_service;
     }
 
+    @Operation(summary = "save video", description = "inserting video into database")
      @PostMapping("/save-video")
     public Video_Resp_dto savevideo(
          @Valid @RequestBody Video_dto video_dto
@@ -34,11 +36,13 @@ public class Video_cont {
         return this.video_service.saveVideo(video_dto);
      }
 
+     @Operation(summary = "get videos", description = "returns a list of videos")
      @GetMapping("/get-video")
      public List<Video> getVideos(){
         return video_service.getVideo();
     }
 
+    @Operation(summary= "delete video", description = "delete by id")
      @DeleteMapping("/author/delete/{video-id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable ("video-id") Integer id){

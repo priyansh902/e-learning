@@ -16,6 +16,7 @@ import com.priyansh.spring.RespDto.Section_Resp_dto;
 import com.priyansh.spring.Service.Section_service;
 import com.priyansh.spring.model.Section;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -27,18 +28,22 @@ public class Section_cont {
         this.section_service = section_service;
     }
 
-         @PostMapping("/save-section")
+
+    @Operation(summary = "save section", description = "insert section into database")
+    @PostMapping("/save-section")
     public Section_Resp_dto saveSection(
-         @Valid @RequestBody Section_dto section_dto
-      ) {
+      @Valid @RequestBody Section_dto section_dto
+       ) {
         return this.section_service.saveSection(section_dto);
      }
 
+     @Operation(summary = "get sections", description = "returns a list of sections")
      @GetMapping("/get-section")
      public List<Section> getsSections(){
         return section_service.getsection();
     }
 
+    @Operation(summary = "delete a section", description = "delete section by their id")
      @DeleteMapping("/author/delete/{section-id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable ("section-id") Integer id){

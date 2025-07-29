@@ -16,6 +16,7 @@ import com.priyansh.spring.RespDto.Course_Resp_dto;
 import com.priyansh.spring.Service.Course_service;
 import com.priyansh.spring.model.Course;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -27,6 +28,7 @@ public class Course_cont {
         this.course_service = course_service;
     }
 
+    @Operation(summary = "save courses", description = "insert cource values into table")
     @PostMapping("/save-course")
     public Course_Resp_dto saveCourse(
         @Valid @RequestBody Course_dto course_dto
@@ -34,11 +36,13 @@ public class Course_cont {
         return this.course_service.saveCourse(course_dto);
     }
 
+    @Operation(summary = "get courses", description = "return a list of courses")
     @GetMapping("/get-courses")
     public List<Course> getCourses(){
         return course_service.getCourse();
     }
 
+    @Operation(summary = "delete a course", description = "delete a course by their respective id")
      @DeleteMapping("/author/delete/{course-id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable ("course-id") Integer id){

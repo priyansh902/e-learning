@@ -16,6 +16,7 @@ import com.priyansh.spring.RespDto.Resource_Resp_dto;
 import com.priyansh.spring.Service.Resource_service;
 import com.priyansh.spring.model.Resource;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -27,6 +28,7 @@ public class Resource_cont {
        this.resource_service = resource_service;
     }
 
+    @Operation(summary = "save resourses", description = "insert resources into database")
       @PostMapping("/save-resource")
     public Resource_Resp_dto saveresource(
         @Valid @RequestBody Resource_dto resource_dto
@@ -34,11 +36,13 @@ public class Resource_cont {
         return this.resource_service.saveresource(resource_dto);
     }
 
+    @Operation(summary = "get resources", description = "returns a list of resources")
     @GetMapping("/get-resource")
     public List<Resource> getrResources(){
         return resource_service.getresource();
     }
 
+    @Operation(summary = "delete a resource", description = "delete a resource by id")
      @DeleteMapping("/author/delete/{resource-id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable ("resource-id") Integer id){

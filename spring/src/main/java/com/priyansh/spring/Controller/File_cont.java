@@ -16,6 +16,7 @@ import com.priyansh.spring.RespDto.File_Resp_dto;
 import com.priyansh.spring.Service.File_service;
 import com.priyansh.spring.model.File;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -27,6 +28,7 @@ public File_cont( File_service file_service){
     this.file_service = file_service;
 }
 
+@Operation(summary = "save a file", description = "insert file into database")
  @PostMapping("/save-File")
     public File_Resp_dto saveFile(
         @Valid @RequestBody File_dto file_dto
@@ -34,11 +36,13 @@ public File_cont( File_service file_service){
         return this.file_service.savefile(file_dto);
     }
 
+    @Operation(summary = "get files", description = "returns a list of files")
     @GetMapping("/get-file")
     public List<File> getfiles(){
         return file_service.getFile();
     }
 
+    @Operation(summary = "delete a file", description = "delete by their resp. id")
      @DeleteMapping("/author/delete/{file-id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable ("file-id") Integer id){

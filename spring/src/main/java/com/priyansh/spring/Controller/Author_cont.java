@@ -17,6 +17,7 @@ import com.priyansh.spring.RespDto.Author_Resp_dto;
 import com.priyansh.spring.Service.Author_service;
 import com.priyansh.spring.model.Author;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -30,6 +31,7 @@ public class Author_cont {
         this.author_service= author_service;
     }
 
+    @Operation(summary = "inserting data into author table. ")
     @PostMapping("/save-Author")
     public Author_Resp_dto saveAuthor(
         @Valid  @RequestBody Author_dto author_dto
@@ -37,6 +39,8 @@ public class Author_cont {
         return this.author_service.saveAuthor(author_dto);
     }
 
+
+    @Operation(summary = "Get all author", description = "Return a list of all authors.")
     @GetMapping("/get-author")
     public List<Author> getAuthor(){
         return author_service.getAuthor();
@@ -47,6 +51,7 @@ public class Author_cont {
         return author_service.toauthor(author);
     }
 
+    @Operation(summary = "Delete a author", description = "delete a author by their respective id")
     @DeleteMapping("/author/delete/{author-id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable ("author-id") Integer id){

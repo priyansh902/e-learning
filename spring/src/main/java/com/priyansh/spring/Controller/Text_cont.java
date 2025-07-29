@@ -16,6 +16,7 @@ import com.priyansh.spring.RespDto.Text_Resp_dto;
 import com.priyansh.spring.Service.Text_service;
 import com.priyansh.spring.model.Text;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -27,18 +28,21 @@ public class Text_cont {
         this.text_service = text_service;
     }
 
-        @PostMapping("/save-text")
+    @Operation(summary = "save text", description = "inserting text into database")
+    @PostMapping("/save-text")
     public Text_Resp_dto saveText(
          @Valid @RequestBody Text_dto text_dto
       ) {
         return this.text_service.saveText(text_dto);
      }
 
+     @Operation(summary = "get texts",description = "returns a list of texts")
      @GetMapping("/get-text")
      public List<Text> gettTexts(){
         return text_service.getText();
     }
 
+    @Operation(summary = "delete a text", description = "delete text by id")
      @DeleteMapping("/author/delete/{text-id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable ("text-id") Integer id){

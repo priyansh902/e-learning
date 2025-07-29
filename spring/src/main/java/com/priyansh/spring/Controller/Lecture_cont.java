@@ -16,6 +16,7 @@ import com.priyansh.spring.RespDto.Lecture_Resp_dto;
 import com.priyansh.spring.Service.Lecture_service;
 import com.priyansh.spring.model.Lecture;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -27,6 +28,7 @@ public class Lecture_cont {
         this.lecture_service = lecture_service;
     }
 
+    @Operation(summary = "save lectures", description = "insert lectures into databases")
      @PostMapping("/save-lecture")
     public Lecture_Resp_dto savelecture(
         @Valid @RequestBody Lecture_dto lecture_dto
@@ -34,11 +36,14 @@ public class Lecture_cont {
         return this.lecture_service.savelecture(lecture_dto);
     }
 
+    @Operation(summary = "Get lectures", description = "returns a list of lectures")
     @GetMapping("/get-lecture")
     public List<Lecture> getlectures(){
         return lecture_service.getlecture();
     }
 
+
+    @Operation(summary = "delete  a leccture", description = "delete by their resp.id")
      @DeleteMapping("/author/delete/{lecture-id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable ("lecture-id") Integer id){
